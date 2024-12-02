@@ -17,7 +17,7 @@ for (inp in input) {
   grp = as.numeric(unlist(strsplit(inp, " ")))
   diffs = diff(grp)
   
-  if ((all(diffs > 0 & diffs <= 3)) | (all(diffs < 0 & diffs >= -3))) {
+  if ((all(diffs %in% 1:3)) | (all(diffs %in% -3:-1))) {
     safe_cnt = safe_cnt + 1
   }
 }
@@ -35,14 +35,14 @@ for (inp in input) {
   grp = as.numeric(unlist(strsplit(inp, " ")))
   diffs = diff(grp)
   
-  if ((all(diffs > 0 & diffs <= 3)) | (all(diffs < 0 & diffs >= -3))) {
+  if ((all(diffs %in% 1:3)) | (all(diffs %in% -3:-1))) {
     safe_cnt = safe_cnt + 1
   } else {
     for (i in seq_along(grp)) {
       sub_grp = grp[-i]
       sub_diffs = diff(sub_grp)
       
-      if ((all(sub_diffs > 0 & sub_diffs <= 3)) | (all(sub_diffs < 0 & sub_diffs >= -3))) {
+      if ((all(sub_diffs %in% 1:3)) | (all(sub_diffs %in% -3:-1))) {
         safe_cnt = safe_cnt + 1
         break
       }

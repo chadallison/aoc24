@@ -25,7 +25,6 @@ p1 = data.frame(new_l = sort(df$l), new_r = sort(df$r)) |>
 sprintf("Part 1 solution: %s", p1)
 ```
 
-
 ```{r}
 # part 2
 r_cnt = df |>

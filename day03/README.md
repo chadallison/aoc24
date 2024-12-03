@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 3 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 3 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # part 1
 muls = unlist(str_extract_all(input, "mul\\(\\d+,\\d+\\)"))
 
@@ -26,7 +23,9 @@ p1 = data.frame(x = muls) |>
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 174960292"
+
+``` r
 # part 2
 instructions = unlist(str_extract_all(input, "mul\\(\\d+,\\d+\\)|do\\(\\)|don't\\(\\)"))
 df = data.frame(x = instructions)
@@ -54,37 +53,4 @@ p2 = df |>
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 56275602"

@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 4 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 4 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # part 1
 dt_split = strsplit(input, "")
 dt = matrix(unlist(dt_split), ncol = length(dt_split[[1]]), byrow = TRUE)
@@ -58,7 +55,9 @@ total_count = sum(
 sprintf("Part 1 solution: %s", total_count)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 2718"
+
+``` r
 # part 2
 dt_split = strsplit(input, "")
 dt = matrix(unlist(dt_split), ncol = length(dt_split[[1]]), byrow = TRUE)
@@ -79,37 +78,4 @@ total_x_mas = sum(sapply(2:(nrow(dt) - 1), function(i) {
 sprintf("Part 2 solution: %s", total_x_mas)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 2046"

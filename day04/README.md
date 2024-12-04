@@ -6,76 +6,56 @@ library(tidyverse)
 ```
 
 ``` r
-input = readLines("input.txt")
+input = read.delim("input.txt", header = F)
 ```
 
 ``` r
 # part 1
-dt_split = strsplit(input, "")
-dt = matrix(unlist(dt_split), ncol = length(dt_split[[1]]), byrow = TRUE)
+mat = str_split_fixed(input$V1, "", nchar(input[1, ]))
 
-get_diagonal = function(m, x, dim = c("row", "col"), dir = c("up", "down")) {
-  dim = rlang::arg_match(dim)
-  dir = rlang::arg_match(dir)
-  if (dir == "up") m = m[nrow(m):1, , drop = FALSE]
-  sub_matrix = if (dim == "row") m[x:nrow(m), 1:(ncol(m) - x + 1), drop = FALSE] 
-               else m[1:(nrow(m) - x + 1), x:ncol(m), drop = FALSE]
-  if (length(sub_matrix) == 1) sub_matrix else diag(sub_matrix)
+d1 = row(mat) - col(mat)
+diag1 = split(mat, d1)
+diag2 = split(mat[nrow(mat):1, ], d1)
+
+sol = c()
+for (i in 1:nrow(mat)) {
+  row = str_extract_all(paste0(mat[i, ], collapse = ""), "XMAS", simplify = TRUE)
+  row1 = str_extract_all(paste0(mat[i, ], collapse = ""), "SAMX", simplify = TRUE)
+  col = str_extract_all(paste0(mat[, i], collapse = ""), "XMAS", simplify = TRUE)
+  col1 = str_extract_all(paste0(mat[, i], collapse = ""), "SAMX", simplify = TRUE)
+  sol = c(sol, row, row1, col, col1)
 }
 
-strg_extract_all = function(str, pattern) {
-  patterns = stringi::stri_split_regex(pattern, "\\|", simplify = TRUE) |> as.vector()
-  purrr::map(str, \(x) {
-    matches = stringi::stri_locate_all_regex(x, patterns, omit_no_match = TRUE) |>
-      purrr::reduce(Matrix::rbind2)
-    stringi::stri_sub(x, matches[, 1], matches[, 2])
-  })
+for (i in 1:length(diag1)) {
+  sol = c(sol, 
+          str_extract_all(paste0(diag1[[i]], collapse = ""), "XMAS", simplify = TRUE),
+          str_extract_all(paste0(diag1[[i]], collapse = ""), "SAMX", simplify = TRUE),
+          str_extract_all(paste0(diag2[[i]], collapse = ""), "XMAS", simplify = TRUE),
+          str_extract_all(paste0(diag2[[i]], collapse = ""), "SAMX", simplify = TRUE))
 }
 
-count = function(x) {
-  paste0(x, collapse = "") |>
-    strg_extract_all("XMAS|SAMX") |>
-    unlist() |>
-    length()
-}
-
-count_diag = function(indices, dim, dir) {
-  purrr::map_int(indices, \(x) get_diagonal(dt, x, dim, dir) |> count()) |> sum()
-}
-
-total_count = sum(
-  apply(dt, 1, count), 
-  apply(dt, 2, count), 
-  count_diag(seq_len(nrow(dt)), "row", "down"), 
-  count_diag(seq_len(ncol(dt))[-1], "col", "down"), 
-  count_diag(seq_len(nrow(dt)), "row", "up"), 
-  count_diag(seq_len(ncol(dt))[-1], "col", "up")
-)
-
-sprintf("Part 1 solution: %s", total_count)
+p1 = length(sol)
+sprintf("Part 1 solution: %s", p1)
 ```
 
     ## [1] "Part 1 solution: 2718"
 
 ``` r
 # part 2
-dt_split = strsplit(input, "")
-dt = matrix(unlist(dt_split), ncol = length(dt_split[[1]]), byrow = TRUE)
-
-check_x_mas = function(i, j) {
-  if (i < 2 | j < 2 | i > nrow(dt) - 1 | j > ncol(dt) - 1) return(0)
-  diag1 = sapply(-1:1, \(d) dt[i + d, j + d])
-  diag2 = sapply(-1:1, \(d) dt[i + d, j - d])
-  diag1_matches = paste(diag1, collapse = "") %in% c("MAS", "SAM")
-  diag2_matches = paste(diag2, collapse = "") %in% c("MAS", "SAM")
-  return(as.integer(diag1_matches && diag2_matches))
-}
-
-total_x_mas = sum(sapply(2:(nrow(dt) - 1), function(i) {
-  sum(sapply(2:(ncol(dt) - 1), function(j) check_x_mas(i, j)))
+p2 = sum(sapply(1:(nrow(mat) - 2), function(i) {
+  sapply(1:(ncol(mat) - 2), function(j) {
+    p2 = mat[i:(i + 2), j:(j + 2)]
+    p2.2 = p2[nrow(p2):1, ]
+    if (p2[2, 2] == "A" && 
+        (paste0(diag(p2), collapse = "") %in% c("MAS", "SAM")) && 
+        (paste0(diag(p2.2), collapse = "") %in% c("MAS", "SAM"))) {
+      return(1)
+    }
+    return(0)
+  })
 }))
 
-sprintf("Part 2 solution: %s", total_x_mas)
+sprintf("Part 2 solution: %s", p2)
 ```
 
     ## [1] "Part 2 solution: 2046"

@@ -1,19 +1,16 @@
----
-title: "Advent of Code: 5 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 5 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = "input.txt"
 skip = which(readLines(input) == "")
 ```
 
-```{r}
+``` r
 # part 1
 dt1 = readr::read_delim(input, "|", col_names = F, n_max = skip - 1, show_col_types = F) |>
   dplyr::filter(!is.na(X2))
@@ -37,7 +34,9 @@ p1 = sum(dt2 |> purrr::map_int(\(x) {
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 4905"
+
+``` r
 # part 2
 swap = function(x, i = 1) {
   left = x[i]; right = x[i + 1]
@@ -71,52 +70,4 @@ p2 = dt2[middle_page == 0] |>
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 6204"

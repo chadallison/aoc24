@@ -47,6 +47,7 @@ sprintf("Part 1 solution: %s", p1)
 ```
 
 ```{r}
+# part 2
 curr_map = input_clean
 current_pos = which(input_clean == "^", arr.ind = T) |> as.vector()
 current_dir = "N"
@@ -78,16 +79,6 @@ repeat {
 
 sprintf("Part 2 solution: %s", p2)
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 

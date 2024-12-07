@@ -1,19 +1,16 @@
----
-title: "Advent of Code: 7 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 7 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 input_df = data.frame(x = input)
 ```
 
-```{r}
+``` r
 parse_input = function(filename) {
   map(readLines(filename) |> str_trim() |> discard(~ . == ""), ~ {
     parts = strsplit(.x, ": ")[[1]]
@@ -45,7 +42,9 @@ p1 = solve()
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 882304362421"
+
+``` r
 # part 2
 is_possible = function(value, numbers) {
   if (length(numbers) == 1) return(value == numbers)
@@ -70,9 +69,4 @@ p2 = input_df |>
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 145149066755184"

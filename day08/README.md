@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 8 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 8 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # parts 1 and 2
 input = readLines("input.txt")
 
@@ -58,12 +55,12 @@ p2 = resonant_locs |>
   nrow()
 
 sprintf("Part 1 solution: %s", p1)
+```
+
+    ## [1] "Part 1 solution: 273"
+
+``` r
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 1017"

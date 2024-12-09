@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 8 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 8 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 disk = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # part 1
 parse_disk_data = function(disk_data) {
     as.integer(unlist(strsplit(disk_data, "", fixed = T)))
@@ -63,7 +60,9 @@ p1 = solve_disk_problem(disk)
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 6360094256423"
+
+``` r
 # part 2
 solve_disk_part2 = function(disk_data) {
     disk_space = parse_disk_data(disk_data)
@@ -101,28 +100,6 @@ solve_disk_part2 = function(disk_data) {
 
 p2 = solve_disk_part2(disk)
 sprintf("Part 2 solution: %s", p2)
-
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 6379677752410"

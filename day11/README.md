@@ -1,20 +1,17 @@
----
-title: "Advent of Code: 11 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 11 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 library(memoise)
 ```
 
-```{r}
+``` r
 input_raw = readLines("input.txt")
 input = data.frame(x = input_raw)
 ```
 
-```{r}
+``` r
 # part 1
 x = as.numeric(str_split(input$x, " ")[[1]])
 
@@ -37,7 +34,9 @@ p1 = x |>
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 218079"
+
+``` r
 # part 2
 p2 = x |>
   map_dbl(blink_stones, 75) |>
@@ -47,39 +46,4 @@ p2 = x |>
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 259755538429618"

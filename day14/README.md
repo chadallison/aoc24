@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 14 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 14 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # part 1
 input_clean = str_extract_all(input, "(-?)\\d+") |>
   (function(extracted_data) {
@@ -40,7 +37,9 @@ p1 = input_clean |>
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 214109808"
+
+``` r
 # part 2
 find_unique_positions = function(input_clean, room_x, room_y) {
   t = 0
@@ -69,18 +68,4 @@ p2 = result$time
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 7687"

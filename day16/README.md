@@ -1,15 +1,12 @@
----
-title: "Advent of Code: 16 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 16 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 library(igraph)
 ```
 
-```{r}
+``` r
 input = data.frame(x = readLines("input.txt"))
 
 # util functions
@@ -45,7 +42,7 @@ adjacent_join = function(x, y = x, diagonal = F, suffix = c("", "2")) {
 }
 ```
 
-```{r}
+``` r
 # part 1
 maze = input |>
   grid_tidy(x) |>
@@ -86,7 +83,9 @@ p1 = shortest_paths(ig, start, ends, output = "epath")$epath |>
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 91464"
+
+``` r
 # part 2
 p2 = all_shortest_paths(ig, start, ends)$res |>
   unlist() |>
@@ -97,19 +96,4 @@ p2 = all_shortest_paths(ig, start, ends)$res |>
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 494"

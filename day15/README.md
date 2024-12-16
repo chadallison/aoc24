@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 15 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 15 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # part 1
 n = 50L
 
@@ -50,7 +47,9 @@ p1 = sum(100 * Im(box) + Re(box))
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 1349898"
+
+``` r
 # part 2
 update_tile = function(x) {
     gsub("#", "##", gsub("O", "[]", gsub("@", "@.", gsub("\\.", "..", x))))
@@ -119,20 +118,4 @@ p2 = sum(100 * Im(box_l) + Re(box_r) - 1)
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 1376686"

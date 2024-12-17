@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 17 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 17 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 to_binary = function(x) {
   result = numeric()
   number = x
@@ -83,7 +80,9 @@ p1 = paste(output, collapse = ",")
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 1,3,7,4,6,4,2,3,5"
+
+``` r
 get_candidates = function(vA) {
   registers = input[seq_len(which(input == "") - 1)] |>
     (\(.) gsub(".*: ", "", .))() |>
@@ -156,19 +155,4 @@ p2 = apply(candidates, 1, function(x) {
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 202367025818154"

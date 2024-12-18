@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 18 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 18 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # part 1
 n = 71L
 data18 = as.matrix(read.table("input.txt", sep = ","))
@@ -45,7 +42,9 @@ p1 = find_path(1024L)
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 282"
+
+``` r
 # part 2
 low = 1024L
 high = length(byte)
@@ -60,21 +59,4 @@ p2 = paste(data18[high,], collapse = ",")
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 64,29"

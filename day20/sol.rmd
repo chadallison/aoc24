@@ -1,0 +1,45 @@
+---
+title: "Advent of Code: 20 December 2024"
+output: github_document
+knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
+---
+
+```{r message = F, warning = F}
+library(tidyverse)
+```
+
+```{r}
+input = readLines("input.txt")
+```
+
+```{r}
+# part 1
+
+```
+
+```{r}
+# part 2
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

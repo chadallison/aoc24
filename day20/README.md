@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 20 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 20 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = as.character(do.call(rbind, strsplit(readLines("input.txt"), "")))
 ```
 
-```{r}
+``` r
 n = as.integer(sqrt(length(input)))
 wall = which(input == "#")
 start = which(input == "S")
@@ -39,26 +36,13 @@ compute_cheat = function(i, max_cheat) {
 
 p1 = sum(sapply(seq_along(path_co[-1]), compute_cheat, max_cheat = 2L))
 sprintf("Part 1 solution: %s", p1)
+```
 
+    ## [1] "Part 1 solution: 1395"
+
+``` r
 p2 = sum(sapply(seq_along(path_co[-1]), compute_cheat, max_cheat = 20L))
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: 993178"

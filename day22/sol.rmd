@@ -1,0 +1,96 @@
+---
+title: "Advent of Code: 21 December 2024"
+output: github_document
+knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
+---
+
+```{r message = F, warning = F}
+library(tidyverse)
+```
+
+```{r}
+input = readLines("input.txt")
+```
+
+```{r}
+# part 1
+data22 <- read.table("input.txt")[,1]
+
+int2bit <- function(x)  {
+  n <- floor(log(x, base = 2))
+  res <- seq_len(n + 1) 
+
+  for (k in n:0) {
+    res[k + 1] <- if (x >= 2^k) 1L else 0L
+    x <- x - res[k + 1]*2^k 
+  }  
+  return(c(res, rep_len(0L, 23 - n)))
+}
+
+xbit <- sapply(data22, int2bit)
+
+dig <- matrix(0L, nrow = length(data22), ncol = 2001)
+dig[,1] <- data22 %% 10L
+k <- 2L
+
+evolve <- function(xbit) {
+  xbit[7:24, ] <- (xbit[7:24, ] + xbit[7:24 - 6, ]) %% 2L
+  xbit[1:19, ] <- (xbit[1:19, ] + xbit[1:19 + 5, ]) %% 2L 
+  xbit[12:24, ] <- (xbit[12:24, ] + xbit[12:24 - 11, ]) %% 2L
+  
+  dig[, k] <<- colSums(xbit * (2^(0:23))) %% 10L
+  k <<- k + 1L
+  return(xbit)
+}
+
+# part 1------------
+a <- Reduce(\(x, y) evolve(x), rep(list(xbit), 2001))
+sum(colSums(a * (2^(0:23))))
+
+
+# part 2-------
+
+del <- apply(dig, 1, diff)
+res <- matrix(0, length(data22), 1997)
+
+for (k in 1:1997) {
+  x <- del[0:3 + k, ]
+  res[, k] <- colSums(x * 19^(3:0))
+}
+
+tab <- sort(table(as.integer(res)), decreasing = TRUE)[1:250]
+
+uc <- as.integer(names(tab))
+
+res2 <- 0
+for (y in uc) {
+  cl <- apply(res, 1, \(x) which(x == y)[1])
+  
+  res2 <- max(res2, sum(diag(dig[,cl + 4]), na.rm = TRUE))
+}
+
+res2
+```
+
+```{r}
+# part 2
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

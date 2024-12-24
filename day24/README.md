@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 24 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 24 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = readLines("input.txt")
 ```
 
-```{r}
+``` r
 # part 1
 val = grep("\\d$", input[cumsum(input == "") == 0], value = T)
 eq0 = grep("->", input, value = T)
@@ -44,7 +41,9 @@ p1 = sum(res * 2^(seq_along(res) - 1))
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 51410244478064"
+
+``` r
 # part 2
 get_val = \(x) gsub(".* -> ", "", x)
 mypad = \(n) ifelse(n <= 9L, paste0("0", n), as.character(n))
@@ -82,21 +81,4 @@ p2 = paste0(sort(c(res_z, res_z_cor, res_xy, res_xy2)), collapse = ",")
 sprintf("Part 2 solution: %s", p2)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: gst,khg,nhn,tvb,vdc,z12,z21,z33"

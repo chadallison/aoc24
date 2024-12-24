@@ -1,18 +1,15 @@
----
-title: "Advent of Code: 23 December 2024"
-output: github_document
-knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
----
+Advent of Code: 23 December 2024
+================
 
-```{r message = F, warning = F}
+``` r
 library(tidyverse)
 ```
 
-```{r}
+``` r
 input = as.matrix(read.table("input.txt", sep = "-"))
 ```
 
-```{r}
+``` r
 # part 1
 count_triple = function(comp) {
   nxt = as.character(input[input[, 1] %in% comp | input[, 2] %in% comp, ])
@@ -26,7 +23,9 @@ p1 = sum(apply(t_rows, 1, count_triple))
 sprintf("Part 1 solution: %s", p1)
 ```
 
-```{r}
+    ## [1] "Part 1 solution: 1323"
+
+``` r
 # part 2
 netw = rbind(input, input[, 2:1])
 
@@ -47,25 +46,6 @@ while (length(to_check > 1)) {
 
 p2 = paste0(sort(cl_list[[which.max(lengths(cl_list))]]), collapse = ",")
 sprintf("Part 2 solution: %s", p2)
-
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ## [1] "Part 2 solution: er,fh,fi,ir,kk,lo,lp,qi,ti,vb,xf,ys,yu"
